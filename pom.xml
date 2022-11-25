@@ -23,8 +23,9 @@
     <version>38</version>
   </parent>
 
+  <groupId>com.signal-ai</groupId>
   <artifactId>vertx-json-schema</artifactId>
-  <version>4.3.5</version>
+  <version>4.3.5-SIGNALAI</version>
 
   <name>Vert.x JSON Schema</name>
 
