@@ -1,5 +1,9 @@
 package io.vertx.json.schema.impl;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
 
 public class Format {
@@ -184,7 +188,12 @@ public class Format {
   private static final Pattern FASTDATETIME = Pattern.compile("^\\d\\d\\d\\d-[0-1]\\d-[0-3]\\d[t\\s](?:[0-2]\\d:[0-5]\\d:[0-5]\\d|23:59:60)(?:\\.\\d+)?(?:z|[+-]\\d\\d(?::?\\d\\d)?)$", Pattern.CASE_INSENSITIVE);
 
   private static boolean testDateTime(String value) {
-    return FASTDATETIME.matcher(value).find();
+    try {
+      Instant.parse(value);
+      return true;
+    } catch (DateTimeParseException e) {
+      return false;
+    }
   }
 
   // date-time: http://tools.ietf.org/html/rfc3339#section-5.6
@@ -198,6 +207,11 @@ public class Format {
   private static final Pattern FASTDATE = Pattern.compile("^\\d\\d\\d\\d-[0-1]\\d-[0-3]\\d$");
 
   private static boolean testDate(String value) {
-    return FASTDATE.matcher(value).find();
+    try {
+      LocalDate.parse(value);
+      return true;
+    } catch (DateTimeParseException e) {
+      return false;
+    }
   }
 }

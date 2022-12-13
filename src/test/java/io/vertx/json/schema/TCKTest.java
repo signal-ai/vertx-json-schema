@@ -167,7 +167,7 @@ public class TCKTest {
           // this means we don't really support this and the validation failed, so we will ignore it for now
           assumeFalse(unsupported, testDescription);
         } else {
-          fail(testDescription);
+          fail(suiteName + " :: " + suiteDescription + " :: " + testDescription);
         }
       } else {
         if (unsupported) {
